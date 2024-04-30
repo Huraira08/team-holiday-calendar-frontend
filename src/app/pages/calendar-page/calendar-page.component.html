@@ -1,0 +1,20 @@
+<nz-calendar>
+    <div *nzDateCell="let date" class="events">
+        @for (leave of leavePlan; track $index) {
+            @if(isWithinRange(date, leave.leaveStartDate, leave.leaveEndDate)){
+                @if (isWithinRange(date, leave.leaveStartDate, leave.leaveStartDate)) {
+                    <h3 class="custom-highlight"
+                 (click)="openLeaveInfoModal(leave)">{{leave.employeeName}}</h3>
+                }
+                @else {
+                    <div class="custom-highlight"> </div>
+                }
+                
+            }
+        }
+    </div>
+    
+    <ng-container *nzMonthCell="let month">
+      
+    </ng-container>
+  </nz-calendar>
