@@ -36,9 +36,10 @@ export class CalendarPageComponent implements OnInit {
   ){
     // console.log(leaveService.getLeavePlan())
   }
-  ngOnInit(): void {
+  async ngOnInit() {
     let colors = [...this.colors];
     this.leavePlans = this.leaveService.getLeavePlan();
+    console.log(this.leavePlans)
     for(let leavePlan of this.leavePlans){
       const color = colors.pop();
       leavePlan.badgeColor = color;

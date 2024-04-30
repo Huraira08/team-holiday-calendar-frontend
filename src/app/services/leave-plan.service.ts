@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LeavePlan } from '../models/leave-plan';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,10 +37,19 @@ export class LeavePlanService {
       leaveStartDate: new Date(2024, 3, 13),
       leaveEndDate: new Date(2024, 3, 16),
     },
+    {
+      employeeName: 'Iftikhar',
+      leaveStartDate: new Date(2024, 4, 3),
+      leaveEndDate: new Date(2024, 4, 6),
+    },
   ]
-  constructor() { }
+
+  apiUrl: string = 'https://localhost:7281/api/LeavePlan'
+  constructor(private http: HttpClient) { }
 
   getLeavePlan(): LeavePlan[] {
+    // let promise = firstValueFrom(this.http.get<LeavePlan[]>(this.apiUrl))
+    // return promise
     return this.leavePlan;
   }
 }
