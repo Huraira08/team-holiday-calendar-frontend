@@ -3,4 +3,5 @@ export interface LeavePlan {
     leaveStartDate: Date;
     leaveEndDate: Date;
     leaveReason?: string;
+    badgeColor?: string;
 }

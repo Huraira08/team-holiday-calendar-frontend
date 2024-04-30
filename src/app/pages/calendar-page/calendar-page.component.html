@@ -1,20 +1,19 @@
 <nz-calendar>
-    <div *nzDateCell="let date" class="events">
-        @for (leave of leavePlan; track $index) {
-            @if(isWithinRange(date, leave.leaveStartDate, leave.leaveEndDate)){
-                @if (isWithinRange(date, leave.leaveStartDate, leave.leaveStartDate)) {
-                    <h3 class="custom-highlight"
-                 (click)="openLeaveInfoModal(leave)">{{leave.employeeName}}</h3>
-                }
-                @else {
-                    <div class="custom-highlight"> </div>
+    <div *nzDateCell="let date" class="events" >
+            @if(isLeaveStartDate(date)){
+                <div>
+                    @for (leavePlan of getLeaveObjList(date); track $index) {
+                        <div (click)="openLeaveInfoModal(leavePlan)" class="employee-name">
+                            <nz-badge [nzColor]="leavePlan.badgeColor" [nzText]="leavePlan.employeeName"></nz-badge><br>
+                        </div>
+                    }
+                </div>
+            }
+            @else {
+                @for(color of getColorsFromDate(date); track $index){
+                    <nz-badge [nzColor]="color"></nz-badge>
                 }
                 
             }
-        }
     </div>
-    
-    <ng-container *nzMonthCell="let month">
-      
-    </ng-container>
   </nz-calendar>
