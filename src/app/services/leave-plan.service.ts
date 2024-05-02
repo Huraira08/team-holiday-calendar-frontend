@@ -49,11 +49,6 @@ export class LeavePlanService {
 
   getLeavePlan() {
     let promise = firstValueFrom(this.http.get<LeavePlan[]>(this.apiUrl))
-    // promise.then(leaves=> console.log(leaves.map(leave => ({...leave, 
-    //   leaveStartDate:new Date(leave.leaveStartDate),
-    //   leaveEndDate: new Date(leave.leaveEndDate)
-    // }))))
     return promise
-    // return this.leavePlan;
   }
 }

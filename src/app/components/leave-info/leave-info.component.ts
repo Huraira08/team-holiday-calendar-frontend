@@ -8,10 +8,8 @@ interface ILeaveModalData{
 
 @Component({
   selector: 'app-leave-info',
-  // templateUrl: './leave-info.component.html',
   styleUrl: './leave-info.component.css',
   template: `
-  <!-- <h2>{{modalData.leave.leaveEndDate}}</h2> -->
   <nz-descriptions nzTitle="User Info" nzBordered nzLayout="vertical">
     <nz-descriptions-item nzTitle="Employee Name">{{modalData.leave.employeeName}}</nz-descriptions-item>
     <nz-descriptions-item nzTitle="Leave Start date">{{modalData.leave.leaveStartDate.toDateString()}}</nz-descriptions-item>

@@ -33,9 +33,8 @@ export class CalendarPageComponent implements OnInit {
 
   constructor(private leaveService: LeavePlanService,
     private modal: NzModalService
-  ){
-    // console.log(leaveService.getLeavePlan())
-  }
+  ){}
+  
   async ngOnInit() {
     let colors = [...this.colors];
     this.leavePlans = await this.leaveService.getLeavePlan();
@@ -44,13 +43,6 @@ export class CalendarPageComponent implements OnInit {
       leaveEndDate: new Date(leave.leaveEndDate)
     }))
 
-    // this.leavePlans = this.leavePlans.map(leave =>({
-    //   ...leave,
-    //   leaveStartDate: new Date(leave.leaveStartDate.getFullYear(), leave.leaveStartDate.getMonth(), leave.leaveStartDate.getDate()),
-    //   leaveEndDate: new Date(leave.leaveEndDate.getFullYear(), leave.leaveEndDate.getMonth(), leave.leaveEndDate.getDate()),
-    // }))
-
-    console.log(this.leavePlans)
     for(let leavePlan of this.leavePlans){
       const color = colors.pop();
       leavePlan.badgeColor = color;
@@ -66,14 +58,12 @@ export class CalendarPageComponent implements OnInit {
         this.DateColorsMap.set(currentDate.getTime(), [])
       }
         this.DateColorsMap.get(currentDate.getTime())!.push(color!)
-        // this.DateColorsMap.set(currentDate.getTime(), color!)
         currentDate = addDays(currentDate, 1)
       }
       if(colors.length === 0){
         colors = [...this.colors]
       }
     }
-    console.log(this.DateColorsMap)
   }
 
   openLeaveInfoModal(leave: LeavePlan){
