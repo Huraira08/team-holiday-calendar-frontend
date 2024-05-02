@@ -9,11 +9,8 @@
                     }
                 </div>
             }
-            @else {
-                @for(color of getColorsFromDate(date); track $index){
-                    <nz-badge [nzColor]="color"></nz-badge>
-                }
-                
+            @for(color of getColorsFromDate(date); track $index){
+                <nz-badge [nzColor]="color"></nz-badge><br>
             }
     </div>
   </nz-calendar>

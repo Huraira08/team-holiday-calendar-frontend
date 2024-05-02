@@ -10,46 +10,50 @@ export class LeavePlanService {
   private leavePlan: LeavePlan[] = [
     {
       employeeName: 'Aslam',
-      leaveStartDate: new Date(2024, 3, 1),
-      leaveEndDate: new Date(2024, 3, 10),
+      leaveStartDate: new Date(2024, 4, 1),
+      leaveEndDate: new Date(2024, 4, 10),
       leaveReason: 'Sick'
     },
     {
       employeeName: 'Babar',
-      leaveStartDate: new Date(2024, 3, 1),
-      leaveEndDate: new Date(2024, 3, 5),
+      leaveStartDate: new Date(2024, 4, 1),
+      leaveEndDate: new Date(2024, 4, 5),
       leaveReason: 'Sick'
     },
     {
       employeeName: 'Jameel',
-      leaveStartDate: new Date(2024, 3, 1),
-      leaveEndDate: new Date(2024, 3, 8),
+      leaveStartDate: new Date(2024, 4, 1),
+      leaveEndDate: new Date(2024, 4, 8),
       leaveReason: 'Sick'
     },
     {
       employeeName: 'Azeem',
-      leaveStartDate: new Date(2024, 3, 11),
-      leaveEndDate: new Date(2024, 3, 11),
+      leaveStartDate: new Date(2024, 4, 11),
+      leaveEndDate: new Date(2024, 4, 11),
       leaveReason: 'Urgent work'
     },
     {
       employeeName: 'Rizwan',
-      leaveStartDate: new Date(2024, 3, 13),
-      leaveEndDate: new Date(2024, 3, 16),
+      leaveStartDate: new Date(2024, 4, 13),
+      leaveEndDate: new Date(2024, 4, 16),
     },
     {
       employeeName: 'Iftikhar',
-      leaveStartDate: new Date(2024, 4, 3),
-      leaveEndDate: new Date(2024, 4, 6),
+      leaveStartDate: new Date(2024, 5, 3),
+      leaveEndDate: new Date(2024, 5, 6),
     },
   ]
 
   apiUrl: string = 'https://localhost:7281/api/LeavePlan'
   constructor(private http: HttpClient) { }
 
-  getLeavePlan(): LeavePlan[] {
-    // let promise = firstValueFrom(this.http.get<LeavePlan[]>(this.apiUrl))
-    // return promise
-    return this.leavePlan;
+  getLeavePlan() {
+    let promise = firstValueFrom(this.http.get<LeavePlan[]>(this.apiUrl))
+    // promise.then(leaves=> console.log(leaves.map(leave => ({...leave, 
+    //   leaveStartDate:new Date(leave.leaveStartDate),
+    //   leaveEndDate: new Date(leave.leaveEndDate)
+    // }))))
+    return promise
+    // return this.leavePlan;
   }
 }

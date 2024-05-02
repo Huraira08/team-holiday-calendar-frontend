@@ -38,7 +38,18 @@ export class CalendarPageComponent implements OnInit {
   }
   async ngOnInit() {
     let colors = [...this.colors];
-    this.leavePlans = this.leaveService.getLeavePlan();
+    this.leavePlans = await this.leaveService.getLeavePlan();
+    this.leavePlans = this.leavePlans.map(leave => ({...leave, 
+      leaveStartDate: new Date(leave.leaveStartDate),
+      leaveEndDate: new Date(leave.leaveEndDate)
+    }))
+
+    // this.leavePlans = this.leavePlans.map(leave =>({
+    //   ...leave,
+    //   leaveStartDate: new Date(leave.leaveStartDate.getFullYear(), leave.leaveStartDate.getMonth(), leave.leaveStartDate.getDate()),
+    //   leaveEndDate: new Date(leave.leaveEndDate.getFullYear(), leave.leaveEndDate.getMonth(), leave.leaveEndDate.getDate()),
+    // }))
+
     console.log(this.leavePlans)
     for(let leavePlan of this.leavePlans){
       const color = colors.pop();
@@ -77,25 +88,10 @@ export class CalendarPageComponent implements OnInit {
 
   isLeaveStartDate(date: Date){
     return this.leavePlansMap.has(startOfDay(date).getTime());
-    // if(this.leavePlansMap.has(startOfDay(date).getTime())){
-    //   const leavePlan = this.leavePlansMap.(startOfDay(date).getTime());
-      
-    //   return true
-    // }
-    // return false;
   }
   getLeaveObjList(date: Date){
     if(this.leavePlansMap.has(startOfDay(date).getTime())){
       const plans = this.leavePlansMap.get(date.getTime())!
-      // console.log(plans)
-      // for(let plan of plans){
-      //   const numberOfDays = differenceInDays(plan.leaveStartDate, plan.leaveEndDate)
-      //   const currentDate = addDays(plan.leaveStartDate,  1)
-      //   // console.log(`for employee ${plan.employeeName}`)
-      //   for(let i = 0;i < numberOfDays;i++){
-      //     console.log(currentDate.toDateString())
-      //   }
-      // }
       return plans;
     }
     return [];
