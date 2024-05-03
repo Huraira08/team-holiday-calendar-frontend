@@ -38,10 +38,6 @@ export class CalendarPageComponent implements OnInit {
   async ngOnInit() {
     let colors = [...this.colors];
     this.leavePlans = await this.leaveService.getLeavePlan();
-    this.leavePlans = this.leavePlans.map(leave => ({...leave, 
-      leaveStartDate: new Date(leave.leaveStartDate),
-      leaveEndDate: new Date(leave.leaveEndDate)
-    }))
 
     for(let leavePlan of this.leavePlans){
       const color = colors.pop();
